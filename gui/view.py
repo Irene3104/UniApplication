@@ -267,13 +267,13 @@ class EnrolmentFrame(tk.Frame):
     def update_subjects_list(self):
         self.subjects_listbox.delete(0, tk.END)
         student = self.controller.model.logged_in_user
-        for subject in student.subjects:
-            self.subjects_listbox.insert(
-                tk.END,
-                f"Subject::{subject.id} -- Mark = {subject.mark} -- Grade = {subject.grade}",
-            )
-
-        if subject == None:
+        if student.subjects:  # 학생의 과목 리스트가 비어있지 않은 경우
+            for subject in student.subjects:
+                self.subjects_listbox.insert(
+                    tk.END,
+                    f"Subject::{subject.id} -- Mark = {subject.mark} -- Grade = {subject.grade}",
+                )
+        else:  # 학생의 과목 리스트가 비어있는 경우
             self.subjects_listbox.insert(tk.END, "No enrolled subjects")
 
     # 과목 삭제
