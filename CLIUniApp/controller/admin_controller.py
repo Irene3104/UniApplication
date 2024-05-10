@@ -1,9 +1,18 @@
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+
 from colorama import Fore, init
-from database import *
-from subject import *
+from models.database import *
+from models.subject import *
 
 init(autoreset=True)
 db = Database()
+
 
 def clear_database(db):
     print(Fore.YELLOW + "Clearing Students Database.")

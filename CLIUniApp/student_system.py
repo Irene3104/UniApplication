@@ -1,11 +1,20 @@
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
+
 from colorama import *
-from student_controller import *
-from subject_controller import *
-from database import *
+from controller.student_controller import *
+from controller.subject_controller import *
+from models.database import *
 
 init(autoreset=True)
 
 db = Database()
+
 
 def student_menu():
     current_student = None

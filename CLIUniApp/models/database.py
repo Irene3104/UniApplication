@@ -1,9 +1,11 @@
-import os
-import sys
 import fcntl
+import os
 import pickle
+import sys
 import threading
+
 from colorama import *
+
 init(autoreset=True)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,34 +27,13 @@ class SingletonMeta(type):
 
 class Database(metaclass=SingletonMeta):
     def __init__(self):
-        self.filename = os.path.join(parent_dir, "cli/data", "students.data")
+        self.filename = os.path.join(parent_dir, "data", "students.data")
         self.file_lock = threading.Lock()
         self.students = self.load_students()
 
-    # def load_students(self):
-    #     try:
-    #         with self.file_lock, open(self.filename, "rb") as f:
-    #             fcntl.flock(f, fcntl.LOCK_EX)
-    #             # Python 2에서 생성된 파일을 Python 3에서 읽을 경우 추가 옵션
-    #             if sys.version_info[0] > 2:
-    #                 data = pickle.load(f, encoding="latin1", errors="ignore")
-    #             else:
-    #                 data = pickle.load(f)
-    #             fcntl.flock(f, fcntl.LOCK_UN)
-    #             return data
-    #     except FileNotFoundError:
-    #         print("Student data file not found.")
-    #         return []
-    #     except (EOFError, pickle.UnpicklingError) as e:
-    #         print(f"Error reading student data: {e}")
-    #         return []
-    #     except Exception as e:
-    #         print(f"Unexpected error: {e}")
-    #         return []
-
     def load_students(self):
         try:
-            print(f"Trying to load from: {self.filename}") # 파일 경로 출력 추가
+            print(f"Trying to load from: {self.filename}")  # 파일 경로 출력 추가
             with self.file_lock, open(self.filename, "rb") as f:
                 fcntl.flock(f, fcntl.LOCK_EX)
                 # Python 2에서 생성된 파일을 Python 3에서 읽을 경우 추가 옵션

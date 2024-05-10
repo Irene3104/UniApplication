@@ -4,13 +4,15 @@ import sys
 
 # rootDir 설정
 currentPath = os.getcwd()
-rootDir = currentPath.replace("gui", "")
-modelsPath = os.path.join(rootDir, "cli/")
+rootDir = currentPath.replace("GUIUniApp", "")
+modelsPath = os.path.join(rootDir, "CLIUniApp/")
 sys.path.append(modelsPath)
+print("gui 경로확인")
+print(modelsPath)
 
-from cli.database import *
-from cli.student import *
-from cli.subject import *
+from models.database import *
+from models.student import *
+from models.subject import *
 
 db = Database()
 

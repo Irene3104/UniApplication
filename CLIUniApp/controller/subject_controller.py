@@ -1,8 +1,15 @@
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 import random
 
 from colorama import *
-from database import *
-from subject import *
+from models.database import *
+from models.subject import *
 
 init(autoreset=True)
 db = Database()
@@ -27,7 +34,6 @@ def enroll_subject(student, db):
         Fore.YELLOW
         + f"You are now enrolled in {len(student.subjects)} out of 4 subjects."
     )
-    print(student)
     return True
 
 

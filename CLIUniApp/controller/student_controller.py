@@ -1,13 +1,21 @@
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 import random
 
 from colorama import *
-from database import *
-from student import *
-from validator import *
+from models.database import *
+from models.student import *
+from utils.validator import *
 
 init(autoreset=True)
 
 db = Database()
+
 
 def login_student(db):
     email = input("Enter your email: ")
